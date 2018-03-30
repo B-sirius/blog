@@ -37,14 +37,15 @@
 <p></p><p data-height="265" data-theme-id="0" data-slug-hash="LdzLXR" data-default-tab="js,result" data-user="padfoot_07" data-embed-version="2" data-pen-title="perlin noise-two dimensional" class="codepen">See the Pen <a href="https://codepen.io/padfoot_07/pen/LdzLXR/" target="_blank" rel="noopener">perlin noise-two dimensional</a> by Zhouyi (<a href="https://codepen.io/padfoot_07" target="_blank" rel="noopener">@padfoot_07</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<p>左侧是二维柏林噪声，右侧是纯随机，所以二维图像中的每个点看起来都受其周围点的影响，这有些类似于云不是么233</p>
+<p>左侧是二维柏林噪声，右侧是纯随机，所以二维图像中的每个点看起来都<strong>受其周围点的影响</strong>，这有些类似于云不是么233</p>
 <h2 id="让我见识一下吧，noise的性能"><a href="#让我见识一下吧，noise的性能" class="headerlink" title="让我见识一下吧，noise的性能"></a>让我见识一下吧，noise的性能</h2><p>不要被上述图像束缚了思考，经典柏林噪声建议使用<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ed5b799e7d9cd423db6f533050ddfda181b4850b" alt="{\displaystyle 6t^{5}-15t^{4}+10t^{3}}">作为插值函数，但这并不妨碍俺们使用其他函数，如（图像来源：<a href="https://zhuanlan.zhihu.com/p/22337544" target="_blank" rel="noopener">不只是噪音</a>）：</p>
-<p>使用指数插值</p>
+<p>使用<strong>指数</strong>插值</p>
 <p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E6%8F%92%E5%80%BC1.jpg" alt="指数插值"></p>
-<p>使用三角函数插值</p>
+<p>使用<strong>三角函数</strong>插值</p>
 <p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E6%8F%92%E5%80%BC2.jpg" alt="三角函数插值"></p>
-<p>我们还可以对其进行叠加，总之可能性是无限的啊！</p>
+<p>我们还可以对其进行<strong>叠加</strong>，总之可能性是无限的啊！</p>
 <h2 id="实际运用"><a href="#实际运用" class="headerlink" title="实际运用"></a>实际运用</h2><p>以上我们仅仅是对噪声数值本身进行了可视化，事实上对于其特性的使用，完全可以放飞自我啊！</p>
+<p>（以下建议使用pc浏览）</p>
 <p>比如将其作为速度场影响粒子流动：</p>
 <p></p><p data-height="265" data-theme-id="0" data-slug-hash="XEePJb" data-default-tab="js,result" data-user="padfoot_07" data-embed-version="2" data-pen-title="perlin noise-flow" class="codepen">See the Pen <a href="https://codepen.io/padfoot_07/pen/XEePJb/" target="_blank" rel="noopener">perlin noise-flow</a> by Zhouyi (<a href="https://codepen.io/padfoot_07" target="_blank" rel="noopener">@padfoot_07</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
