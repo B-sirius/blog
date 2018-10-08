@@ -22,7 +22,7 @@
 <p>所以要如何实现这样的效果呢——“随机！”，是的，我反正是这么想的，于是一个Math.random()怼上去，结果是线条像抽风一样扭成一团…..自然，线条是由控制点连接起来的，对其叠加一个随机数，前后联系的线条自然会显得支离破碎，或者说：“不自然”。就如同现实中的海浪、云朵、山脉地形一样，他们看起来都是<strong>随机</strong>的，却又有一种<strong>连续性</strong>！但是，为了应用到计算机图像中，我们要如何抽象这样的现象呢！</p>
 <h2 id="柏林噪声（perlin-noise）与分形噪声！"><a href="#柏林噪声（perlin-noise）与分形噪声！" class="headerlink" title="柏林噪声（perlin noise）与分形噪声！"></a>柏林噪声（perlin noise）与分形噪声！</h2><p>如果你想看的话，这里是<a href="https://zh.wikipedia.org/wiki/Perlin%E5%99%AA%E5%A3%B0" target="_blank" rel="noopener">柏林噪声的定义</a>！</p>
 <p>看得懂吗？看不懂吧，到了俺的画画时间！</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E4%B8%80%E7%BB%B4%E6%9B%B2%E7%BA%BF.png" alt="一维曲线"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/%E4%B8%80%E7%BB%B4%E6%9B%B2%E7%BA%BF.png" alt="一维曲线"></p>
 <p>上面有三张图，姑且称为图一（左上）图二（左下）图三（右）好了（画的时候怎么不标好啊！）。</p>
 <p>图一是这样画出来的：<strong>在一维坐标轴上，选择等距的无穷个点（这里就假设为整数啦），将空间划分为等长的线段，为每个点随机指定一个值（这个值的范围就是振幅amplitude）和一个梯度（在一维上，梯度就是斜率没错！）</strong>。然后“对于坐标值为整数的点，将该点对应的值作为噪声图像上该点的值；对于坐标值不为整数的点，将相邻两点的值和<strong>根据梯度进行<a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%80%BC" target="_blank" rel="noopener">插值</a>运算</strong>，获得该点的值”——这个图像在地球人看来，就是一堆点舒舒服服地给他们平滑连接起来。而这，就是一维柏林噪声图像，全剧终。</p>
 <p>喂等等！标题不是这么写的啊！！</p>
@@ -40,9 +40,9 @@
 <p>左侧是二维柏林噪声，右侧是纯随机，所以二维图像中的每个点看起来都<strong>受其周围点的影响</strong>，这有些类似于云不是么233</p>
 <h2 id="让我见识一下吧，noise的性能"><a href="#让我见识一下吧，noise的性能" class="headerlink" title="让我见识一下吧，noise的性能"></a>让我见识一下吧，noise的性能</h2><p>不要被上述图像束缚了思考，经典柏林噪声建议使用<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ed5b799e7d9cd423db6f533050ddfda181b4850b" alt="{\displaystyle 6t^{5}-15t^{4}+10t^{3}}">作为插值函数，但这并不妨碍俺们使用其他函数，如（图像来源：<a href="https://zhuanlan.zhihu.com/p/22337544" target="_blank" rel="noopener">不只是噪音</a>）：</p>
 <p>使用<strong>指数</strong>插值</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E6%8F%92%E5%80%BC1.jpg" alt="指数插值"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/%E6%8F%92%E5%80%BC1.jpg" alt="指数插值"></p>
 <p>使用<strong>三角函数</strong>插值</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E6%8F%92%E5%80%BC2.jpg" alt="三角函数插值"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/%E6%8F%92%E5%80%BC2.jpg" alt="三角函数插值"></p>
 <p>我们还可以对其进行<strong>叠加</strong>，总之可能性是无限的啊！</p>
 <h2 id="实际运用"><a href="#实际运用" class="headerlink" title="实际运用"></a>实际运用</h2><p>以上我们仅仅是对噪声数值本身进行了可视化，事实上对于其特性的使用，完全可以放飞自我啊！</p>
 <p>（以下建议使用pc浏览）</p>

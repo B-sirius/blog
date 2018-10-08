@@ -26,13 +26,13 @@
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 <h2 id="引入四叉树"><a href="#引入四叉树" class="headerlink" title="引入四叉树"></a>引入四叉树</h2><p>气不气？明眼人都明白，你说左下角和右上角的物体离那么远，有必要去进行检查么？是否有办法，让每个点只需要去<strong>检查他附近的一片区域</strong>，而不是盲目的去对整片地图内的物体进行检查。换句话说，我们需要一个方法，能高效的获得一片区域内所有的物体。</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/quadtree-scan.png" alt="利用四叉树进行区域扫描"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/quadtree-scan.png" alt="利用四叉树进行区域扫描"></p>
 <p>所以上面是一个看上去很浮夸的图像，可以看到绿框内的点全部都被选中并加亮了，线上demo见<a href="https://codepen.io/padfoot_07/pen/PRaojV" target="_blank" rel="noopener">codepen</a>。</p>
 <p>观察上面的图像，大家可以看出似乎点越密集的地方会分裂出越多的小方块，想必其中是有种奇妙的数据结构在做支撑，那就是俺们的主角——<strong>四叉树</strong></p>
 <h2 id="WTF-is-Quadtree"><a href="#WTF-is-Quadtree" class="headerlink" title="WTF is Quadtree"></a>WTF is Quadtree</h2><h3 id="想要实现的策略"><a href="#想要实现的策略" class="headerlink" title="想要实现的策略"></a>想要实现的策略</h3><p>在实现四分树前，我们先讲一下往这个平面添加一个个物体的策略，假设容量为4</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E5%9B%9B%E5%88%86%E6%A0%91%E6%B5%81%E7%A8%8B.png" alt="流程"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/%E5%9B%9B%E5%88%86%E6%A0%91%E6%B5%81%E7%A8%8B.png" alt="流程"></p>
 <p>视觉上的表现大概是这样：</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/quadtree%E7%AD%96%E7%95%A5.png" alt="quadtreece lue"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/quadtree%E7%AD%96%E7%95%A5.png" alt="quadtree策略"></p>
 <h3 id="数据结构的实现"><a href="#数据结构的实现" class="headerlink" title="数据结构的实现"></a>数据结构的实现</h3><p>为了实现上面的策略，我们引入了四分树这样的数据结构：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuadTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(boundary, capacity) &#123;</span><br><span class="line">        <span class="keyword">this</span>.boundary = boundary; <span class="comment">// 该节点的边界，也就是上文的平面</span></span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity; <span class="comment">// 该节点的容量</span></span><br><span class="line">        <span class="keyword">this</span>.points = []; <span class="comment">// 放入该节点的物体</span></span><br><span class="line">        <span class="keyword">this</span>.divided = <span class="literal">false</span>; <span class="comment">// 该节点是否发生了分裂</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当我们试图往其中放入一个物体时：</p>

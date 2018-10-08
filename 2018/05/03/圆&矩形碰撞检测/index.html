@@ -36,9 +36,9 @@
 <p>其中1和2都太过耿直，在此不做说明。本水文着重讨论第3种情形，第4种会更的嗯，俺有骗过你么 （’へ’）</p>
 <h2 id="圆-amp-无旋转方块儿"><a href="#圆-amp-无旋转方块儿" class="headerlink" title="圆 &amp; 无旋转方块儿"></a>圆 &amp; 无旋转方块儿</h2><p>我们要解决的问题，本质上就是要知道圆与矩形有无“接触”——而有了圆-圆检测的经验后，不难想到，我们要做的就是找到<strong>矩形上离圆最近的点</strong>，通过这一点到圆心的距离与圆的半径之间的比较，就能确定圆与矩形是否接触：</p>
 <p>图片来源：<a href="https://aotu.io/notes/2017/02/16/2d-collision-detection/" target="_blank" rel="noopener">凹凸实验室</a></p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/rect&amp;circle-1.png" alt="情形1"></p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/rect&amp;circle-2.png" alt="情形1"></p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/rect&amp;circle-3.png" alt="情形1"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/rect%26circle-1.png" alt="情形2"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/rect%26circle-2.png" alt="情形1"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/rect%26circle-3.png" alt="情形1"></p>
 <p>不难看出这个最近点在x轴、y轴与圆心之间的关系，可以参考下面这个demo：</p>
 <p></p><p data-height="265" data-theme-id="0" data-slug-hash="YLpBZM" data-default-tab="js,result" data-user="padfoot_07" data-embed-version="2" data-pen-title="rect&ball" class="codepen">See the Pen <a href="https://codepen.io/padfoot_07/pen/YLpBZM/" target="_blank" rel="noopener">rect&amp;ball</a> by Zhouyi (<a href="https://codepen.io/padfoot_07" target="_blank" rel="noopener">@padfoot_07</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -46,7 +46,7 @@
 <h2 id="圆-amp-旋转方块儿"><a href="#圆-amp-旋转方块儿" class="headerlink" title="圆 &amp; 旋转方块儿"></a>圆 &amp; 旋转方块儿</h2><p>如果矩形旋转了a度，只需要<strong>以矩形中心为旋转中心，旋转画布-a度</strong>，我们就又回到了上面一种无旋转情形！</p>
 <p>换而言之，我们需要额外做的，就是计算<strong>旋转后的圆心</strong>。那么首先推导一下某个点绕原点旋转一定角度后的坐标：</p>
 <p>证明来源：<a href="https://aotu.io/notes/2017/02/16/2d-collision-detection/" target="_blank" rel="noopener">凹凸实验室</a></p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/rect&amp;circle-4.png" alt="原点旋转"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/rect%26circle-4.png" alt="原点旋转"></p>
 <p>A为旋转前，B为原点，C为旋转后，r为半径，则</p>
 <ol>
 <li>设 A 点旋转前的角度为 δ，则旋转（逆时针）到 C 点后的角度为(δ+β)</li>
@@ -68,7 +68,7 @@
 </li>
 </ol>
 <p>那么对于旋转中心 (centerX, centerY) ，其实只要做一个坐标轴平移的工作：</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/rect&amp;circle-5.png" alt="绕某点旋转"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/rect%26circle-5.png" alt="绕某点旋转"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x’ = cos(β) * (cx – centerX) – sin(β) * (cy – centerY) + centerX</span><br><span class="line">y’ = sin(β) * (cx – centerX) + cos(β) * (cy – centerY) + centerY</span><br></pre></td></tr></table></figure>
 <p>以上就是我们需要的旋转公式。</p>
 <p>下面这个demo中应用了上述理论，透明度较低的是旋转后的图形：</p>

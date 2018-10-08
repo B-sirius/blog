@@ -33,7 +33,7 @@
 <li><p>每一帧，都利用previous对current进行混合（这里似乎是一种<strong>卷积</strong>计算，然而俺的高数不好，可自行了解），并交换两者，具体如下：</p>
 <ul>
 <li><p>对于每个像素的current值（为了方便，边缘像素这里不处理），将其previous中的邻居像素（比如它的上下左右四个像素）的状态数值相加，除以2，减去current中的数值——当然我知道你听不懂，所以画了个图：</p>
-<p><img src="http://7xrkxs.com1.z0.glb.clouddn.com/blogImg/%E6%B0%B4%E6%B3%A2%E7%BA%B9/%E6%B3%A2%E7%BA%B9%E7%AD%96%E7%95%A5.png" alt="策略"></p>
+<p><img src="https://hukua-blog.oss-cn-beijing.aliyuncs.com/markdown-imgs/%E6%B3%A2%E7%BA%B9%E7%AD%96%E7%95%A5.png" alt="策略"></p>
 </li>
 <li><p>等等！根据常识，波纹的扩散（塌陷）幅度会之间减小，因此我们还需要一个阻尼来减小current值，最简单的方法就是每帧都乘以一个小于1的值。</p>
 </li>
