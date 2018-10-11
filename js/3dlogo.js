@@ -61,11 +61,10 @@ function init() {
 
   // 加载模型
   var objLoader = new THREE.OBJLoader();
-  objLoader.setPath("../model/");
-  objLoader.load("apple.obj", function (obj) {
+  objLoader.load("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/apple.obj", function (obj) {
     // 加载shader
-    $.get("../shader/cartoon.vs", function (v) {
-      $.get("../shader/cartoon.fs", function (f) {
+    $.get("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", function (v) {
+      $.get("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.fs", function (f) {
         vs = v;
         fs = f;
       });
