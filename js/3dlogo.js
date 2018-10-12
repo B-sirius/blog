@@ -64,8 +64,12 @@ function init() {
   objLoader.load("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/apple.obj", function (obj) {
     // 加载shader
     Promise.all([fetch("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", {
-      mode: "cors" }), fetch("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", {
-      mode: "cors" })]).then(function (values) {
+      mode: "cors" }).then(function (value) {
+      return value.text();
+    }), fetch("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.fs", {
+      mode: "cors" }).then(function (value) {
+      return value.text();
+    })]).then(function (values) {
       vs = values[0];
       fs = values[1];
     });
