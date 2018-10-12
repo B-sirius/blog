@@ -63,11 +63,11 @@ function init() {
   var objLoader = new THREE.OBJLoader();
   objLoader.load("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/apple.obj", function (obj) {
     // 加载shader
-    $.get("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", function (v) {
-      $.get("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.fs", function (f) {
-        vs = v;
-        fs = f;
-      });
+    Promise.all([fetch("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", {
+      mode: "cors" }), fetch("http://hukua-blog.oss-cn-beijing.aliyuncs.com/assets/cartoon.vs", {
+      mode: "cors" })]).then(function (values) {
+      vs = values[0];
+      fs = values[1];
     });
 
     obj.traverse(function (child) {
